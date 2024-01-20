@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.body-content {
+    width: max(600px, 50vw);
+    height: max(750px, 60vh);
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    gap: 15px;
+}
+
+.body-content>div {
+    border-radius: 10px;
+    padding-top: 20px;
+}
+
+.checkbox {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 1px solid black;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+}
+
+.checked {
+    background-color: black;
+}
+
+.projects-container {
+    border: 1px solid black;
+}
+
+.details-container {
+    border: 1px solid black;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.taskRow {
+    width: 90%;
+    height: 20px;
+    padding-left: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+#taskInput {
+    width: 90%;
+    height: 20px;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
