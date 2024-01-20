@@ -10,10 +10,10 @@ export default function checkbox(task) {
     // add event listener on click
     checkbox.addEventListener('click', ()=> {
         if (task.status) {
-            checkbox.classList.add('checked');
+            checkbox.classList.remove('checked');
             task.status = false;
         } else {
-            checkbox.classList.remove('checked');
+            checkbox.classList.add('checked');
             task.status = true;
         }
 

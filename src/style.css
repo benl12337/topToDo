@@ -30,6 +30,7 @@ body {
 
 .checked {
     background-color: black;
+    text-decoration: line-through;
 }
 
 .projects-container {
