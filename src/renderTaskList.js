@@ -1,21 +1,23 @@
 import './style.css';
-import checkbox from './checkbox';
+import taskName from './taskName.js';
+import checkbox from './checkbox.js';
 
-export default function render(list) {
+
+export default function renderTaskList(list) {
 
     // defining items
     const listContainer = document.querySelector('.list-container');
     listContainer.innerHTML = '';
 
     // render the text nodes
-    list.forEach((element)=>{
+    list.forEach((element) => {
+
         const newTaskDiv = document.createElement('div');
-        const newTaskName = document.createElement('p')
-        newTaskName.textContent = element.name;
         newTaskDiv.classList.add('taskRow');
 
-        newTaskDiv.appendChild(checkbox(element));
-        newTaskDiv.appendChild(newTaskName);
+        const textNode = taskName(element);
+        newTaskDiv.appendChild(checkbox(element ,textNode));
+        newTaskDiv.appendChild(textNode);
         listContainer.appendChild(newTaskDiv);
     });
 };

@@ -30,11 +30,43 @@ body {
 
 .checked {
     background-color: black;
-    text-decoration: line-through;
 }
 
 .projects-container {
     border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.activeProject {
+    transition: 2s ease;
+    background-color: black;
+    color: white;
+}
+
+#addProject {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#addProject button {
+    width: 30px;
+    height: 30px;
+}
+
+#addProject button:hover {
+    cursor: pointer;
+}
+
+.projectName {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-left: 15px;
+}
+
+.projectName:hover {
+    cursor: pointer;
 }
 
 .details-container {
@@ -72,4 +104,8 @@ body {
     border-radius: 5px;
     padding-left: 10px;
     margin-bottom: 10px;
+}
+
+.strike {
+    text-decoration: line-through;
 }

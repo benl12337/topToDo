@@ -1,21 +1,86 @@
 // import statements
 import './style.css';
-import render from './render.js';
+import renderTaskList from './renderTaskList.js';
 import task from './task.js';
 import toDoList from './toDoList.js';
 
 // defining consts & variables
+const projectsList = [];
+const mainProject = new toDoList("Main Project");
+const sideProject = new toDoList("Side Project");
+projectsList.push(mainProject);
+projectsList.push(sideProject);
+
+// getting document elements
+let activeProject = mainProject;
 const input = document.getElementById('taskInput');
-const mainProject = new toDoList();
+input.placeholder = 'Enter task here'
+const projectsContainer = document.querySelector('.projects-list');
+const addProjectBtn = document.querySelector('#addProject button');
+
 
 // this page should handle the logic for switching projects
-document.addEventListener('keypress', (event)=> {
+// projects pane logic here. get the active project
+function renderProjectsList() {
+    projectsContainer.innerHTML = '';
+    projectsList.forEach((project) => {
+        // do the initial render of the page
+        const projectDiv = document.createElement('div');
+
+        if (project == activeProject) {
+            projectDiv.classList.add('activeProject');
+        }
+
+        projectDiv.classList.add('projectName');
+        const textNode = document.createElement('p');
+        textNode.textContent = project.name;
+        projectDiv.appendChild(textNode);
+        projectsContainer.appendChild(projectDiv);
+
+        projectDiv.addEventListener('click', () => {
+            // clear input
+            input.value = '';
+            input.placeholder = 'Enter task here';
+
+            // change active status
+            activeProject = project;
+            projectDiv.classList.toggle('activeProject');
+
+            // logic to add black background
+            renderProjectsList()
+
+            // re-render tasks
+            renderTaskList(project.getList());
+        });
+    });
+}
+
+// add button listener
+addProjectBtn.addEventListener('click', ()=> {
+    const test = prompt("Project Name:");
+
+    // this should be switched to a modal dialogue
+    console.log(test);
+
+    const newProject = new toDoList(test);
+    projectsList.push(newProject);
+    activeProject = newProject;
+    renderProjectsList();
+    renderTaskList(activeProject.getList());
+});
+
+
+// handling the logic for inputting tasks
+document.addEventListener('keypress', (event) => {
     if (event.key == 'Enter' && input.value != '') {
         const newTask = new task(input.value);
-        mainProject.addTask(newTask);
+        activeProject.addTask(newTask);
         input.value = '';
+        input.placeholder = 'Enter task here';
         //mainProject.logTasks();
-        render(mainProject.getList());
+        renderTaskList(activeProject.getList());
     }
 });
+
+renderProjectsList();
 
