@@ -4,7 +4,7 @@ import taskName from './taskName.js';
 import checkbox from './checkbox.js';
 
 
-export default function renderTaskList(list) {
+export default function renderTaskList(list, fade) {
 
     // defining items
     const listContainer = document.querySelector('.list-container');
@@ -17,23 +17,18 @@ export default function renderTaskList(list) {
         newTaskDiv.classList.add('taskRow');
 
         const textNode = taskName(element);
-        newTaskDiv.appendChild(checkbox(element ,textNode));
+        newTaskDiv.appendChild(checkbox(element, textNode));
         newTaskDiv.appendChild(textNode);
 
-        
-        setTimeout(()=>{
-            listContainer.appendChild(newTaskDiv);
-        }, 50);
-        
-        if (list[list.length - 1].name == element.name) {
+
+        if (list[list.length - 1].name == element.name && fade) {
             newTaskDiv.classList.add('taskFade');
         }
+        listContainer.appendChild(newTaskDiv);
 
-        textNode.addEventListener('click', ()=>{
+        textNode.addEventListener('click', () => {
             renderTaskDetails(element);
         });
-
-        
     });
 };
 

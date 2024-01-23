@@ -31,9 +31,6 @@ function renderProjectsList() {
         // do the initial render of the page
         const projectDiv = document.createElement('div');
 
-        if (project == activeProject) {
-            projectDiv.classList.add('activeProject');
-        }
 
         projectDiv.classList.add('projectName');
         const textNode = document.createElement('p');
@@ -56,8 +53,12 @@ function renderProjectsList() {
             renderProjectsList()
 
             // re-render tasks
-            renderTaskList(project.getList());
+            renderTaskList(project.getList(), false);
         });
+
+        if (project == activeProject) {
+            projectDiv.classList.add('activeProject');
+        }
     });
 }
 
@@ -85,7 +86,7 @@ document.addEventListener('keypress', (event) => {
         dateInput.value = '';
         input.placeholder = 'Enter task here';
         //mainProject.logTasks();
-        renderTaskList(activeProject.getList());
+        renderTaskList(activeProject.getList(), true);
     }
 });
 
