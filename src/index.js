@@ -1,6 +1,7 @@
 // import statements
 import './style.css';
 import renderTaskList from './renderTaskList.js';
+import renderTaskDetails from './renderTaskDetails.js';
 import task from './task.js';
 import toDoList from './toDoList.js';
 
@@ -14,9 +15,12 @@ projectsList.push(sideProject);
 // getting document elements
 let activeProject = mainProject;
 const input = document.getElementById('taskInput');
+const dateInput = document.getElementById('dateInput');
 input.placeholder = 'Enter task here'
 const projectsContainer = document.querySelector('.projects-list');
 const addProjectBtn = document.querySelector('#addProject button');
+const listContainer = document.querySelector('.list-container');
+const detailsContainer = document.querySelector('.details-container');
 
 
 // this page should handle the logic for switching projects
@@ -40,6 +44,8 @@ function renderProjectsList() {
         projectDiv.addEventListener('click', () => {
             // clear input
             input.value = '';
+            dateInput.value = '';
+            detailsContainer.innerHTML = '';
             input.placeholder = 'Enter task here';
 
             // change active status
@@ -60,8 +66,8 @@ addProjectBtn.addEventListener('click', ()=> {
     const test = prompt("Project Name:");
 
     // this should be switched to a modal dialogue
-    console.log(test);
 
+    // create a new project object
     const newProject = new toDoList(test);
     projectsList.push(newProject);
     activeProject = newProject;
@@ -72,10 +78,11 @@ addProjectBtn.addEventListener('click', ()=> {
 
 // handling the logic for inputting tasks
 document.addEventListener('keypress', (event) => {
-    if (event.key == 'Enter' && input.value != '') {
-        const newTask = new task(input.value);
+    if (event.key == 'Enter' && input.value != '' && dateInput.value != '') {
+        const newTask = new task(input.value, dateInput.value);
         activeProject.addTask(newTask);
         input.value = '';
+        dateInput.value = '';
         input.placeholder = 'Enter task here';
         //mainProject.logTasks();
         renderTaskList(activeProject.getList());

@@ -98,14 +98,46 @@ body {
     align-items: center;
 }
 
+.taskRow:hover {
+    cursor: pointer;
+}
+
 #taskInput {
     width: 90%;
     height: 20px;
     border-radius: 5px;
     padding-left: 10px;
-    margin-bottom: 10px;
+}
+
+#dateInput {
+    width: 15px;
+    height: 15px;
+    border-radius: 5px;
 }
 
 .strike {
     text-decoration: line-through;
+}
+
+.inputs {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.taskFade {
+    animation: .5s fadeIn;
 }
