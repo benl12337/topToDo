@@ -9,6 +9,30 @@
 
 <body>
     <div class="body-content">
+        <dialog id="taskDialog">
+            <form method="dialog" id="taskForm">
+                <label for="taskName" >Task Name</label>
+                <input type="text" id="filledTaskInput" name="taskName" required>
+                <label for="taskDescription">Task Description</label>
+                <input type="text" id="taskDescription" name="taskDescription" placeholder="Optional">
+                <label for="taskDueDate">Task Due Date</label>
+                <input type= "date" id="taskDueDate" name="taskDueDate" required>
+
+                <button type="reset" id="cancelTask">Cancel</button>
+                <button type="submit" id="submitTask">Add Task</button>
+            </form>
+        </dialog>  
+
+        <dialog id="projectDialog">
+            <form method="dialog" id="projectForm">
+                <label for="projectName" >Project Name</label>
+                <input type="text" id="projectName" name="projectName" required>
+                <button type="reset" id="cancelProject">Cancel</button>
+                <button type="submit" id="submitProject">Add Project</button>
+            </form>
+        </dialog>  
+
+
         <div class="projects-container">
             <div id="addProject"><button>+</button></div>
             <div class="projects-list"></div>
@@ -16,7 +40,6 @@
         <div class="task-container">
             <div class="inputs">
                 <input type="text" id="taskInput">
-                <input type="date" id="dateInput">
             </div>
             <div class="list-container"></div>
         </div>
