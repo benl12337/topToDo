@@ -26,7 +26,7 @@ export default function renderTaskList(list, fade) {
         }
         listContainer.appendChild(newTaskDiv);
 
-        textNode.addEventListener('click', () => {
+        newTaskDiv.addEventListener('click', () => {
             renderTaskDetails(element);
         });
     });

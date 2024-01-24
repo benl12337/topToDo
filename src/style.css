@@ -48,12 +48,6 @@ body {
     flex-direction: column;
 }
 
-.activeProject {
-    animation: .5s fadeIn;
-    background-color: black;
-    color: white;
-}
-
 #addProject {
     display: flex;
     justify-content: center;
@@ -65,14 +59,22 @@ body {
     height: 30px;
 }
 
-#addProject button:hover {
+button:hover {
     cursor: pointer;
 }
 
 .projectName {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+    background-color: white;
     padding-left: 15px;
+    transition: background-color 600ms;
+}
+
+.activeProject {
+    animation: fadeIn .5s;
+    background-color: black;
+    color: white;
 }
 
 .projectName:hover {
@@ -81,6 +83,7 @@ body {
 
 .details-container {
     border: 1px solid black;
+    padding: 20px;
 }
 
 .task-container {
@@ -119,21 +122,14 @@ body {
     padding-left: 10px;
 }
 
-#dateInput {
-    width: 15px;
-    height: 15px;
-    border-radius: 5px;
-}
-
 .strike {
     text-decoration: line-through;
 }
 
 .inputs {
-    width: 90%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
 }
 
