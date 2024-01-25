@@ -1,7 +1,8 @@
 export default class task {
-    constructor(taskName, taskDate) {
+    constructor(taskName, taskDate, description) {
         this.taskName = taskName;
         this.completed = false;
+        this.description = description;
         this.dueDate = taskDate;
     }
 
@@ -9,12 +10,11 @@ export default class task {
         return this.taskName;
     }
 
-    get status() {
-        return this.completed;
-    }
-
     set status(status) {
         this.completed = status;
+    }
+    get status() {
+        return this.completed;
     }
 
     set date(date) {
@@ -24,4 +24,5 @@ export default class task {
     get date() {
         return this.dueDate;
     }
+
 };
