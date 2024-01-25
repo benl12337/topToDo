@@ -17,10 +17,10 @@ export default function renderTaskDetails(task) {
 
     // add task due date
     const taskDueDate = document.createElement('h3');
-    const formattedDate = "";
-    
-    console.log(formattedDate);
+    taskDueDate.textContent = format(task.date, "dd MMM yyyy");
 
+    // append the text elements to the details container
     detailsContainer.appendChild(taskTitle);
     detailsContainer.appendChild(taskDescription);
+    detailsContainer.appendChild(taskDueDate);
 };

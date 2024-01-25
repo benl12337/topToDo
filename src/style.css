@@ -109,11 +109,13 @@ button:hover {
     width: 90%;
     height: 20px;
     padding-left: 10px;
+    padding-right: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
     border: 1px solid black;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .taskRow:hover {
@@ -140,4 +142,13 @@ button:hover {
 
 .taskFade {
     animation: .5s fadeIn;
+}
+
+.firstDiv {
+    display: flex;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
 }

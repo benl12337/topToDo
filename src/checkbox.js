@@ -1,4 +1,4 @@
-export default function checkbox(task, textNode) {
+export default function checkbox(task, textNode, dateNode) {
     const checkbox = document.createElement('div');
     checkbox.classList.add('checkbox');
 
@@ -12,6 +12,7 @@ export default function checkbox(task, textNode) {
         task.status = task.status ? false : true;
         checkbox.classList.toggle('checked');
         textNode.classList.toggle('strike');
+        dateNode.classList.toggle('hidden');
     });
     return checkbox;
 };
