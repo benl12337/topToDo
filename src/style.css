@@ -14,8 +14,8 @@ body {
 }
 
 .body-content {
-    width: max(600px, 50vw);
-    height: max(750px, 60vh);
+    width: max(600px, 75vw);    
+    height: max(500px, 50vh);
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
     gap: 15px;
@@ -91,6 +91,11 @@ button:hover {
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
 }
 
 .list-container {
