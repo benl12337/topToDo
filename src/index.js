@@ -107,7 +107,7 @@ taskForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // add new task to project array
-    const newTask = new task(input.value, taskDueDate.value, taskDescription.value);
+    const newTask = new task(input.value, new Date(taskDueDate.value), taskDescription.value);
     activeProject.addTask(newTask);
 
     // refresh all modal input values
