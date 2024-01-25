@@ -84,7 +84,7 @@ projectForm.addEventListener('submit', (e) => {
     projectName.value = '';
 
     renderProjectsList();
-    renderTaskList(activeProject.getList());
+    renderTaskList(activeProject.getList(), false);
 });
 
 
