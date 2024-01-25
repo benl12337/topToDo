@@ -17,7 +17,7 @@ export default function renderTaskDetails(task) {
 
     // add task due date
     const taskDueDate = document.createElement('h3');
-    const formattedDate = new date(task.date);
+    const formattedDate = "";
     
     console.log(formattedDate);
 
