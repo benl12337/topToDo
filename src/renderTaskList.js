@@ -21,7 +21,6 @@ export default function renderTaskList(list, fade) {
 
         // create a checkbox and textnode, append both
         const textNode = taskName(element);
-<<<<<<< HEAD
         const dateNodeDiv = document.createElement('div');
         const dateNode = document.createElement('p');
 
@@ -46,16 +45,6 @@ export default function renderTaskList(list, fade) {
             dateNodeDiv.appendChild(dateNode);
             newTaskDiv.appendChild(dateNodeDiv);
         }
-=======
-        const dateNode = document.createElement('p');
-        newTaskDiv.appendChild(checkbox(element, textNode));
-        newTaskDiv.appendChild(textNode);
-
-        // create a new div that displays the overdue
-        dateNode.textContent = element.date;
-        
-        newTaskDiv.appendChild(dateNode);
->>>>>>> f557d8b5a13eade74d04ef5467d345536e388a1c
 
         // add class to make the task fade in
         if (list[list.length - 1].name == element.name && fade) {
