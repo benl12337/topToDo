@@ -46,9 +46,15 @@ projectForm.addEventListener('submit', (e) => {
     // reset input values
     detailsContainer.innerHTML = '';
     projectName.value = '';
+<<<<<<< HEAD
     activeProject = renderProjectsList(projectsList, activeProject);
     console.log("changing active project to ", activeProject);
     renderTaskList(activeProject.getList());
+=======
+
+    renderProjectsList();
+    renderTaskList(activeProject.getList(), false);
+>>>>>>> f557d8b5a13eade74d04ef5467d345536e388a1c
 });
 
 
