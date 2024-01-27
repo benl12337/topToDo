@@ -36,7 +36,6 @@ projectForm.addEventListener('submit', (e) => {
     // get the inputs from the form
     const newProject = new toDoList(projectName.value);
     projectsList.push(newProject);
-    console.log(projectsList);
 
     // update localStorage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
@@ -47,10 +46,6 @@ projectForm.addEventListener('submit', (e) => {
     detailsContainer.innerHTML = '';
     projectName.value = '';
     renderProjectsList(projectsList, activeProject);
-    console.log("changing active project to ", activeProject);
-
-    activeProject.list.forEach((element) => { console.log(element.taskName) });
-
 
     renderTaskList(projectsList, activeProject.list, false);
 });
@@ -75,18 +70,13 @@ taskForm.addEventListener('submit', (e) => {
     const taskDueDate = document.querySelector('#taskDueDate');
     const taskDescription = document.querySelector('#taskDescription');
     e.preventDefault();
-    console.log('active project ISSSSSSSSSSSSSSSSS:', activeProject.name);
     // add new task to project array, and push to the current projects list 
     const newTask = new task(filledTaskInput.value, new Date(taskDueDate.value), taskDescription.value);
-    console.log(activeProject);
     activeProject.list.push(newTask);
-    
-    console.log("Current projectsList is: ", projectsList);
-    console.log("this is the list of the active Project: ", activeProject.list);
+
 
     // add to local storage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
-    console.log("the thing stored at local storage is: ", JSON.parse(localStorage.getItem("projectsList")));
 
     // refresh all modal input values
     input.placeholder = 'Enter task here';
@@ -118,14 +108,11 @@ if (!localStorage.getItem("projectsList")) {
     projectsList.push(mainProject);
     // create the projectsList item and place in localStorage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
-    console.log("no projects exist!");
 
 } else {
     // update projectsList to localStorage
     projectsList = JSON.parse(localStorage.getItem("projectsList"));
     
-    console.log(projectsList);
-    console.log("found project: ", projectsList);
 }
 
 activeProject = projectsList[0];

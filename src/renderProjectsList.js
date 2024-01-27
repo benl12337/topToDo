@@ -25,9 +25,7 @@ export default function renderProjectsList(projectsList, activeProject) {
             // change active status
             
             activeProject = project;
-            console.log("active project:", activeProject.name);
             projectDiv.classList.toggle('activeProject');
-            console.log(activeProject);
             renderProjectsList(projectsList, activeProject);
 
             // re-render tasks for active project

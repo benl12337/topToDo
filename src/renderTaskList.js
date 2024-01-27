@@ -8,7 +8,6 @@ export default function renderTaskList(projectsList, list, fade) {
     // defining items
     const listContainer = document.querySelector('.list-container');
     listContainer.innerHTML = '';
-    console.log("this is parsing the error: ", list);
     // render the text nodes
     list.forEach((element) => {
 
