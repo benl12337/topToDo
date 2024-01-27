@@ -10,7 +10,6 @@ export default function renderTaskList(projectsList, list, fade) {
     listContainer.innerHTML = '';
     // render the text nodes
     list.forEach((element) => {
-
         // create a new div
         const newTaskDiv = document.createElement('div');
         const firstDiv = document.createElement('div');
@@ -45,7 +44,8 @@ export default function renderTaskList(projectsList, list, fade) {
         }
 
         // add class to make the task fade in
-        if (list[list.length - 1].name == element.name && fade) {
+        console.log("are these matching", list[list.length - 1].taskName, element.taskName);
+        if (list[list.length - 1].taskName == element.taskName && fade) {
             newTaskDiv.classList.add('taskFade');
         }
 

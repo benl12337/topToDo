@@ -1,10 +1,10 @@
 import renderTaskList from './renderTaskList.js';
+import deleteProject from './deleteProject.js';
 
 export default function renderProjectsList(projectsList, activeProject) {
     const projectsContainer = document.querySelector('.projects-list');
     const detailsContainer = document.querySelector('.details-container')
     const input = document.getElementById('taskInput');
-    console.log("successful!!", activeProject.list);
     projectsContainer.innerHTML = '';
 
     projectsList.forEach((project) => {
@@ -14,9 +14,10 @@ export default function renderProjectsList(projectsList, activeProject) {
         const textNode = document.createElement('p');
         textNode.textContent = project.name;
         projectDiv.appendChild(textNode);
+        projectDiv.appendChild(deleteProject(projectsList, activeProject, project, projectDiv));
         projectsContainer.appendChild(projectDiv);
 
-        projectDiv.addEventListener('click', () => {
+        textNode.addEventListener('click', () => {
             // clear input
             input.value = '';
             detailsContainer.innerHTML = '';
@@ -31,6 +32,7 @@ export default function renderProjectsList(projectsList, activeProject) {
             // re-render tasks for active project
             renderTaskList(projectsList, activeProject.list, false);
         });
+
 
         if (project.name == activeProject.name) {
             projectDiv.classList.add('activeProject');
