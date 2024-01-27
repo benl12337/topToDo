@@ -152,3 +152,7 @@ button:hover {
 .hidden {
     display: none;
 }
+
+dialog {
+    border-radius: 15px;
+}

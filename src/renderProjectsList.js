@@ -23,17 +23,18 @@ export default function renderProjectsList(projectsList, activeProject) {
             input.placeholder = 'Enter task here';
 
             // change active status
+            console.log("active project:", activeProject);
             activeProject = project;
             projectDiv.classList.toggle('activeProject');
             console.log(activeProject);
             renderProjectsList(projectsList, activeProject);
 
             // re-render tasks for active project
-            renderTaskList(project.getList(), false);
+            renderTaskList(activeProject.list, false);
             return activeProject;
         });
 
-        if (project == activeProject) {
+        if (project.name == activeProject.name) {
             projectDiv.classList.add('activeProject');
         }
     });

@@ -9,7 +9,7 @@ export default function renderTaskDetails(task) {
 
     // add the task title
     const taskTitle = document.createElement('h2');
-    taskTitle.textContent = task.name;
+    taskTitle.textContent = task.taskName;
 
     // add task description
     const taskDescription = document.createElement('h3');
@@ -17,7 +17,7 @@ export default function renderTaskDetails(task) {
 
     // add task due date
     const taskDueDate = document.createElement('h3');
-    taskDueDate.textContent = format(task.date, "dd MMM yyyy");
+    taskDueDate.textContent = format(task.dueDate, "dd MMM yyyy");
 
     // append the text elements to the details container
     detailsContainer.appendChild(taskTitle);

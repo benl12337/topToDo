@@ -2,14 +2,13 @@ import './style.css';
 import renderTaskDetails from './renderTaskDetails.js';
 import taskName from './taskName.js';
 import checkbox from './checkbox.js';
-import format from "date-fns";
 
 
 export default function renderTaskList(list, fade) {
     // defining items
     const listContainer = document.querySelector('.list-container');
     listContainer.innerHTML = '';
-
+    console.log("this is parsing the error: ", list);
     // render the text nodes
     list.forEach((element) => {
 
@@ -25,9 +24,9 @@ export default function renderTaskList(list, fade) {
         const dateNode = document.createElement('p');
 
         // calculate the difference in dates
-        let dateDiff = (new Date()).getTime() - element.date.getTime();
+        let dateDiff = (new Date).getTime() - (new Date(element.dueDate)).getTime();
         dateDiff = -(dateDiff / (1000 * 60 * 60 * 24));
-        dateDiff = Math.ceil(dateDiff);
+        dateDiff = Math.ceil(dateDiff);  
 
         firstDiv.appendChild(checkbox(element, textNode, dateNode));
         firstDiv.appendChild(textNode);

@@ -7,10 +7,9 @@ import toDoList from './toDoList.js';
 
 
 // defining consts & variables
-const projectsList = [];
+let projectsList = [];
 const mainProject = new toDoList("Main Project");
 projectsList.push(mainProject);
-
 // assigning the current active project to a variable
 let activeProject = mainProject;
 
@@ -33,22 +32,30 @@ addProjectBtn.addEventListener('click', () => {
     projectDialog.showModal();
 });
 
+// add a project to projects list upon submission of form
 projectForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // get the inputs from the form
     const newProject = new toDoList(projectName.value);
     projectsList.push(newProject);
+    console.log(projectsList);
+    
+    // update localStorage
+    localStorage.setItem("projectsList", JSON.stringify(projectsList));
     activeProject = newProject;
     projectDialog.close()
 
-    console.log(activeProject);
     // reset input values
     detailsContainer.innerHTML = '';
     projectName.value = '';
     activeProject = renderProjectsList(projectsList, activeProject);
     console.log("changing active project to ", activeProject);
-    renderTaskList(activeProject.getList());
+
+    activeProject.list.forEach((element)=>{console.log(element.taskName)});
+    
+    console.log("successful!!");
+    renderTaskList(activeProject.list);
 });
 
 
@@ -71,10 +78,14 @@ taskForm.addEventListener('submit', (e) => {
     const taskDescription = document.querySelector('#taskDescription');
     e.preventDefault();
 
-    // add new task to project array
+    // add new task to project array, and push to the current projects list 
     const newTask = new task(filledTaskInput.value, new Date(taskDueDate.value), taskDescription.value);
-    console.log(activeProject);
-    activeProject.addTask(newTask);
+    activeProject.list.push(newTask);
+    console.log("Current projectsList is: ", projectsList);
+    console.log("this is the list of the active Project: ", activeProject.list);
+    
+    // add to local storage
+    localStorage.setItem("projectsList", JSON.stringify(projectsList));
 
     // refresh all modal input values
     input.placeholder = 'Enter task here';
@@ -83,7 +94,7 @@ taskForm.addEventListener('submit', (e) => {
     taskDueDate.value = '';
     taskDescription.value = '';
     taskDialog.close();
-    renderTaskList(activeProject.getList(), true);
+    renderTaskList(activeProject.list, true);
 });
 
 
@@ -100,9 +111,22 @@ document.querySelector('#cancelProject').addEventListener('click', () => {
     projectDialog.close();
 });
 
+// check if projectsList exists. If not, create a new objects in localStorage
+if (!localStorage.getItem("projectsList")) {
+    
+    // create the projectsList item and place in localStorage
+    localStorage.setItem("projectsList", JSON.stringify(projectsList));
+    console.log("no projects exist!");
 
-// first function to be called on the page
-renderProjectsList(projectsList, activeProject);
+} else {
+
+    // update projectsList to localStorage
+    projectsList = JSON.parse(localStorage.getItem("projectsList"));
+    console.log(projectsList);
+    console.log("found project: ", projectsList);
+}
+
+renderProjectsList(projectsList, mainProject);
 
 
 
