@@ -4,7 +4,7 @@ import taskName from './taskName.js';
 import checkbox from './checkbox.js';
 
 
-export default function renderTaskList(list, fade) {
+export default function renderTaskList(projectsList, list, fade) {
     // defining items
     const listContainer = document.querySelector('.list-container');
     listContainer.innerHTML = '';
@@ -28,7 +28,7 @@ export default function renderTaskList(list, fade) {
         dateDiff = -(dateDiff / (1000 * 60 * 60 * 24));
         dateDiff = Math.ceil(dateDiff);  
 
-        firstDiv.appendChild(checkbox(element, textNode, dateNode));
+        firstDiv.appendChild(checkbox(projectsList, list, element, textNode, dateNode));
         firstDiv.appendChild(textNode);
         newTaskDiv.appendChild(firstDiv);
 

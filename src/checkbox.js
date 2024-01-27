@@ -1,4 +1,6 @@
-export default function checkbox(task, textNode, dateNode) {
+import renderTaskList from "./renderTaskList";
+
+export default function checkbox(projectsList, list, task, textNode, dateNode) {
     const checkbox = document.createElement('div');
     checkbox.classList.add('checkbox');
 
@@ -13,6 +15,10 @@ export default function checkbox(task, textNode, dateNode) {
         checkbox.classList.toggle('checked');
         textNode.classList.toggle('strike');
         dateNode.classList.toggle('hidden');
+        renderTaskList(projectsList, list, false);
+
+        // write the updated status to localStorage
+        localStorage.setItem("projectsList", JSON.stringify(projectsList));
     });
     return checkbox;
 };

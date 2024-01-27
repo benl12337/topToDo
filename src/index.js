@@ -8,11 +8,8 @@ import toDoList from './toDoList.js';
 
 // defining consts & variables
 let projectsList = [];
-const mainProject = new toDoList("Main Project");
-projectsList.push(mainProject);
 // assigning the current active project to a variable
-let activeProject = mainProject;
-
+let activeProject;
 
 // querying document elements
 const input = document.getElementById('taskInput');
@@ -40,7 +37,7 @@ projectForm.addEventListener('submit', (e) => {
     const newProject = new toDoList(projectName.value);
     projectsList.push(newProject);
     console.log(projectsList);
-    
+
     // update localStorage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
     activeProject = newProject;
@@ -49,13 +46,13 @@ projectForm.addEventListener('submit', (e) => {
     // reset input values
     detailsContainer.innerHTML = '';
     projectName.value = '';
-    activeProject = renderProjectsList(projectsList, activeProject);
+    renderProjectsList(projectsList, activeProject);
     console.log("changing active project to ", activeProject);
 
-    activeProject.list.forEach((element)=>{console.log(element.taskName)});
-    
-    console.log("successful!!");
-    renderTaskList(activeProject.list);
+    activeProject.list.forEach((element) => { console.log(element.taskName) });
+
+
+    renderTaskList(projectsList, activeProject.list, false);
 });
 
 
@@ -73,19 +70,23 @@ input.addEventListener('keypress', (event) => {
 
 // add the task to project upon submission of the form
 taskForm.addEventListener('submit', (e) => {
+    
     const filledTaskInput = document.querySelector('#filledTaskInput');
     const taskDueDate = document.querySelector('#taskDueDate');
     const taskDescription = document.querySelector('#taskDescription');
     e.preventDefault();
-
+    console.log('active project ISSSSSSSSSSSSSSSSS:', activeProject.name);
     // add new task to project array, and push to the current projects list 
     const newTask = new task(filledTaskInput.value, new Date(taskDueDate.value), taskDescription.value);
+    console.log(activeProject);
     activeProject.list.push(newTask);
+    
     console.log("Current projectsList is: ", projectsList);
     console.log("this is the list of the active Project: ", activeProject.list);
-    
+
     // add to local storage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
+    console.log("the thing stored at local storage is: ", JSON.parse(localStorage.getItem("projectsList")));
 
     // refresh all modal input values
     input.placeholder = 'Enter task here';
@@ -94,7 +95,7 @@ taskForm.addEventListener('submit', (e) => {
     taskDueDate.value = '';
     taskDescription.value = '';
     taskDialog.close();
-    renderTaskList(activeProject.list, true);
+    renderTaskList(projectsList, activeProject.list, true);
 });
 
 
@@ -113,20 +114,24 @@ document.querySelector('#cancelProject').addEventListener('click', () => {
 
 // check if projectsList exists. If not, create a new objects in localStorage
 if (!localStorage.getItem("projectsList")) {
-    
+    const mainProject = new toDoList("Main Project");
+    projectsList.push(mainProject);
     // create the projectsList item and place in localStorage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
     console.log("no projects exist!");
 
 } else {
-
     // update projectsList to localStorage
     projectsList = JSON.parse(localStorage.getItem("projectsList"));
+    
     console.log(projectsList);
     console.log("found project: ", projectsList);
 }
 
-renderProjectsList(projectsList, mainProject);
+activeProject = projectsList[0];
+renderProjectsList(projectsList, projectsList[0]);
+renderTaskList(projectsList, activeProject.list, false);
+
 
 
 
