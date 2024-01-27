@@ -71,7 +71,7 @@ taskForm.addEventListener('submit', (e) => {
     const taskDescription = document.querySelector('#taskDescription');
     e.preventDefault();
     // add new task to project array, and push to the current projects list 
-    const newTask = new task(filledTaskInput.value, new Date(taskDueDate.value), taskDescription.value);
+    const newTask = new task(filledTaskInput.value, taskDueDate.value, taskDescription.value);
     activeProject.list.push(newTask);
 
 

@@ -22,9 +22,10 @@ export default function renderTaskList(projectsList, list, fade) {
         const dateNode = document.createElement('p');
 
         // calculate the difference in dates
+        console.log("date is: ", element.dueDate);
         let dateDiff = (new Date).getTime() - (new Date(element.dueDate)).getTime();
         dateDiff = -(dateDiff / (1000 * 60 * 60 * 24));
-        dateDiff = Math.ceil(dateDiff);  
+        dateDiff = Math.floor(dateDiff);  
 
         firstDiv.appendChild(checkbox(projectsList, list, element, textNode, dateNode));
         firstDiv.appendChild(textNode);
