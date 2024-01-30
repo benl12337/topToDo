@@ -14,7 +14,7 @@ body {
 }
 
 .body-content {
-    width: max(600px, 75vw);    
+    width: max(600px, 75vw);
     height: max(500px, 50vh);
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
@@ -39,7 +39,7 @@ body {
 }
 
 .checked {
-    background-color: black;
+    background-color: grey;
 }
 
 .projects-container {
@@ -68,7 +68,11 @@ button:hover {
     border-bottom: 1px solid black;
     background-color: white;
     padding-left: 15px;
+    padding-right: 15px;
     transition: background-color 600ms;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .activeProject {
@@ -131,6 +135,7 @@ button:hover {
 
 .strike {
     text-decoration: line-through;
+    color: grey;
 }
 
 .inputs {
@@ -155,4 +160,22 @@ button:hover {
 
 dialog {
     border-radius: 15px;
+}
+
+.trashCan {
+    width: 15px;
+    height: auto;
+}
+
+.trashCan:hover {
+    width: 18px;
+}
+
+.trashToggle {
+    filter: invert(100%);
+}
+
+dialog input {
+    border-radius: 5px;
+    margin-bottom: 15px;
 }

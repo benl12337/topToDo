@@ -2,6 +2,7 @@ import renderTaskList from './renderTaskList.js';
 import deleteProject from './deleteProject.js';
 
 export default function renderProjectsList(projectsList, activeProject) {
+    // write to localStorage. This is creating a circular reference
     const projectsContainer = document.querySelector('.projects-list');
     const detailsContainer = document.querySelector('.details-container')
     const input = document.getElementById('taskInput');
@@ -14,8 +15,10 @@ export default function renderProjectsList(projectsList, activeProject) {
         const textNode = document.createElement('p');
         textNode.textContent = project.name;
         projectDiv.appendChild(textNode);
-        projectDiv.appendChild(deleteProject(projectsList, activeProject, project, projectDiv));
+        const deleteBtn = deleteProject(projectsList, activeProject.obj, project, projectDiv);
+        projectDiv.appendChild(deleteBtn);
         projectsContainer.appendChild(projectDiv);
+        projectDiv.dataset.name = project.name;
 
         textNode.addEventListener('click', () => {
             // clear input
@@ -24,18 +27,19 @@ export default function renderProjectsList(projectsList, activeProject) {
             input.placeholder = 'Enter task here';
 
             // change active status
-            
-            activeProject = project;
+            activeProject.obj = project;
             projectDiv.classList.toggle('activeProject');
             renderProjectsList(projectsList, activeProject);
 
             // re-render tasks for active project
-            renderTaskList(projectsList, activeProject.list, false);
+            renderTaskList(projectsList, activeProject.obj.list, false);
+
         });
 
 
-        if (project.name == activeProject.name) {
+        if (project.name == activeProject.obj.name) {
             projectDiv.classList.add('activeProject');
+            deleteBtn.classList.toggle('trashToggle');
         }
     });
 };

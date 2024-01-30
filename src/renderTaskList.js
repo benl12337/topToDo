@@ -22,10 +22,9 @@ export default function renderTaskList(projectsList, list, fade) {
         const dateNode = document.createElement('p');
 
         // calculate the difference in dates
-        console.log("date is: ", element.dueDate);
         let dateDiff = (new Date).getTime() - (new Date(element.dueDate)).getTime();
         dateDiff = -(dateDiff / (1000 * 60 * 60 * 24));
-        dateDiff = Math.floor(dateDiff);  
+        dateDiff = Math.round(dateDiff);  
 
         firstDiv.appendChild(checkbox(projectsList, list, element, textNode, dateNode));
         firstDiv.appendChild(textNode);
@@ -45,14 +44,13 @@ export default function renderTaskList(projectsList, list, fade) {
         }
 
         // add class to make the task fade in
-        console.log("are these matching", list[list.length - 1].taskName, element.taskName);
         if (list[list.length - 1].taskName == element.taskName && fade) {
             newTaskDiv.classList.add('taskFade');
         }
 
         listContainer.appendChild(newTaskDiv);
         newTaskDiv.addEventListener('click', () => {
-            renderTaskDetails(element);
+            renderTaskDetails(element, projectsList, list);
         });
     });
 };
