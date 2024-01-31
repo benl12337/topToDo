@@ -8,30 +8,45 @@
     }
 }
 
+html {
+    background-color: rgba(36, 36, 36, 0.788);
+}
+
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+.title {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(26, 115, 199);
+    font-size: 3rem;
+    font-family: sans-serif;
+    padding: 20px;
+    color: white;
+
 }
 
 .body-content {
-    width: max(600px, 75vw);
-    height: max(500px, 50vh);
+    width: max(600px, 100vw);
+    height: max(500px, 90vh);
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
-    gap: 15px;
+    grid-template-columns: 1fr 5fr 1fr;
 }
 
 .body-content>div {
-    border-radius: 10px;
-    padding-top: 20px;
+    padding-top: 10px;
 }
 
 .checkbox {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    margin-right: 5px;
-    border: 1px solid black;
+    margin-right: 10px;
+    margin-left: 5px;
+    border: 1px solid white;
 }
 
 .checkbox:hover {
@@ -40,12 +55,14 @@ body {
 
 .checked {
     background-color: grey;
+    border: none;
 }
 
 .projects-container {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
+    background-color: rgba(63, 62, 62, 0.788);
+
 }
 
 #addProject {
@@ -55,8 +72,18 @@ body {
 }
 
 #addProject button {
+    color: rgb(26, 115, 199);
     width: 30px;
     height: 30px;
+    font-size: 2rem;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    outline: none;
+}
+
+#addProject button:hover {
+    transform: scale(1.1);
 }
 
 button:hover {
@@ -64,9 +91,7 @@ button:hover {
 }
 
 .projectName {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color: white;
+    color: white;
     padding-left: 15px;
     padding-right: 15px;
     transition: background-color 600ms;
@@ -77,7 +102,7 @@ button:hover {
 
 .activeProject {
     animation: fadeIn .5s;
-    background-color: black;
+    background-color: rgb(26, 115, 199);
     color: white;
 }
 
@@ -86,7 +111,7 @@ button:hover {
 }
 
 .details-container {
-    border: 1px solid black;
+    color: white;
     padding: 20px;
 }
 
@@ -94,7 +119,6 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
 }
 
 .modalForm {
@@ -110,27 +134,39 @@ button:hover {
 }
 
 .taskRow {
+    color: white;
     width: 90%;
     height: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-bottom: 15px;
-    border: 1px solid black;
+    border-bottom: 1px solid white;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: none;
 }
 
 .taskRow:hover {
     cursor: pointer;
+    background-color: rgb(121, 121, 121);
 }
 
 #taskInput {
+    font-size: 1rem;
     width: 90%;
     height: 20px;
     border-radius: 5px;
     padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: inset 0px 0px 0px 0px red;
+    border-bottom: 1px solid rgb(201, 201, 201);
+    color: white;   
+    inset: none;
 }
 
 .strike {
@@ -139,6 +175,7 @@ button:hover {
 }
 
 .inputs {
+    padding-top: 45px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -165,14 +202,11 @@ dialog {
 .trashCan {
     width: 15px;
     height: auto;
+    filter: invert(100%);
 }
 
 .trashCan:hover {
     width: 18px;
-}
-
-.trashToggle {
-    filter: invert(100%);
 }
 
 dialog input {

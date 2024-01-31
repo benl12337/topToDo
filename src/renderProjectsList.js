@@ -3,12 +3,13 @@ import deleteProject from './deleteProject.js';
 
 export default function renderProjectsList(projectsList, activeProject) {
     // write to localStorage. This is creating a circular reference
+
     const projectsContainer = document.querySelector('.projects-list');
     const detailsContainer = document.querySelector('.details-container')
     const input = document.getElementById('taskInput');
     projectsContainer.innerHTML = '';
 
-    projectsList.forEach((project) => {
+    projectsList.list.forEach((project) => {
         // do the initial render of the page
         const projectDiv = document.createElement('div');
         projectDiv.classList.add('projectName');
@@ -28,6 +29,8 @@ export default function renderProjectsList(projectsList, activeProject) {
 
             // change active status
             activeProject.obj = project;
+            // write activeProject to localStorage
+            localStorage.setItem("activeProject", activeProject);
             projectDiv.classList.toggle('activeProject');
             renderProjectsList(projectsList, activeProject);
 

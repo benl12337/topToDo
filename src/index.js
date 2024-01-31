@@ -7,7 +7,9 @@ import toDoList from './toDoList.js';
 
 
 // defining consts & variables
-let projectsList = [];
+let projectsList = {
+    list: []
+};
 
 // querying document elements
 const input = document.getElementById('taskInput');
@@ -31,18 +33,21 @@ addProjectBtn.addEventListener('click', () => {
 projectForm.addEventListener('submit', (e) => {
     e.preventDefault();
     // handle logic for duplicate project names
-    if ((projectsList.map((project) => { return project.name })).indexOf(projectName.value) != -1) {
+    if ((projectsList.list.map((project) => { return project.name })).indexOf(projectName.value) != -1) {
         projectName.setCustomValidity("Invalid");
         return;
     }
 
     // get the inputs from the form
     const newProject = new toDoList(projectName.value);
-    projectsList.push(newProject);
+    projectsList.list.push(newProject);
 
     // update localStorage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
+
+    // update active Project in localStorage
     activeProject.obj = newProject;
+    localStorage.setItem("activeProject", JSON.stringify(activeProject));
     projectDialog.close()
 
     // reset input values
@@ -68,6 +73,8 @@ input.addEventListener('keypress', (event) => {
 // add the task to project upon submission of the form
 taskForm.addEventListener('submit', (e) => {
 
+    activeProject = JSON.parse(localStorage.getItem("activeProject"));
+
 
     // handle logic for duplicate task name
 
@@ -79,7 +86,15 @@ taskForm.addEventListener('submit', (e) => {
     const newTask = new task(filledTaskInput.value, taskDueDate.value, taskDescription.value);
     activeProject.obj.list.push(newTask);
 
+
+    // find matching project index and push the active project in
+    const projectIndex = (projectsList.list.map((project) => { return project.name })).indexOf(activeProject.obj.name);
+    console.log("Where were you");
+    projectsList.list[projectIndex].list.push(newTask);
+
+
     // add to local storage
+    console.log("is it being pushed", projectsList); // the task is not being pushed to the current project
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
 
     // refresh all modal input values
@@ -109,23 +124,32 @@ document.querySelector('#cancelProject').addEventListener('click', () => {
 // check if projectsList exists. If not, create a new objects in localStorage
 if (!localStorage.getItem("projectsList")) {
     const mainProject = new toDoList("Main Project");
-    projectsList.push(mainProject);
+    projectsList.list.push(mainProject);
     // create the projectsList item and place in localStorage
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
 
 } else {
     // update projectsList to localStorage
-    
     projectsList = JSON.parse(localStorage.getItem("projectsList"));
 }
 
+
+
 // assigning the current active project to a variable
 let activeProject = {
-    obj: projectsList[0]
+    obj: projectsList.list[0]
 }
+
+// assign the activeProject variable, save in localStorage
+localStorage.setItem("activeProject", JSON.stringify(activeProject));
+
 
 projectName.addEventListener('change', () => {
     projectName.setCustomValidity("");
+});
+
+document.addEventListener('click', ()=>{
+    localStorage.setItem("projectsList", JSON.stringify(projectsList));
 });
 
 renderProjectsList(projectsList, activeProject);
