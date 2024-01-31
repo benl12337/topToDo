@@ -33,7 +33,7 @@ body {
     width: max(600px, 100vw);
     height: max(500px, 90vh);
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 1fr 5fr 2fr;
 }
 
 .body-content>div {
@@ -175,10 +175,13 @@ button:hover {
 }
 
 .inputs {
-    padding-top: 45px;
+    color: white;
+    text-align: left;
+    padding-top: 10px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 10px;
 }
 

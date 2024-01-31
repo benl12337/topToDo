@@ -2,6 +2,7 @@ import renderProjectsList from './renderProjectsList.js';
 import renderTaskList from './renderTaskList.js';
 import updateActiveProject from './updateActiveProject';
 import trashCan from './trash-can.png';
+import updateProjectTitle from './updateProjectTitle.js';
 
 // attribute https://www.flaticon.com/authors/tanah-basah
 
@@ -18,6 +19,7 @@ export default function deleteProject(projectsList, activeProject, project, proj
         projectsList.list.splice(index, 1);
         updateActiveProject(projectsList, activeProject);
         trashCanBtn.classList.toggle('trashToggle');
+        updateProjectTitle();
     });
 
     return deleteButton;

@@ -4,6 +4,7 @@ import renderTaskList from './renderTaskList.js';
 import renderProjectsList from './renderProjectsList.js';
 import task from './task.js';
 import toDoList from './toDoList.js';
+import updateProjectTitle from './updateProjectTitle.js';
 
 
 // defining consts & variables
@@ -49,6 +50,7 @@ projectForm.addEventListener('submit', (e) => {
     activeProject.obj = newProject;
     localStorage.setItem("activeProject", JSON.stringify(activeProject));
     projectDialog.close()
+    updateProjectTitle();
 
     // reset input values
     detailsContainer.innerHTML = '';
@@ -148,9 +150,10 @@ projectName.addEventListener('change', () => {
     projectName.setCustomValidity("");
 });
 
-document.addEventListener('click', ()=>{
+document.addEventListener('click', () => {
     localStorage.setItem("projectsList", JSON.stringify(projectsList));
 });
 
+updateProjectTitle();
 renderProjectsList(projectsList, activeProject);
 renderTaskList(projectsList, activeProject.obj.list, false);
